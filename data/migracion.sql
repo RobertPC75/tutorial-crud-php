@@ -2,7 +2,7 @@ CREATE DATABASE tutorial_crud;
 
 use tutorial_crud;
 
-CREATE TABLE alumnos (
+CREATE TABLE trabajadores (
   id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(30) NOT NULL,
   apellido VARCHAR(30) NOT NULL,

@@ -14,21 +14,21 @@ try {
   $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
   if (isset($_POST['apellido'])) {
-    $consultaSQL = "SELECT * FROM alumnos WHERE apellido LIKE '%" . $_POST['apellido'] . "%'";
+    $consultaSQL = "SELECT * FROM trabajadores WHERE apellido LIKE '%" . $_POST['apellido'] . "%'";
   } else {
-    $consultaSQL = "SELECT * FROM alumnos";
+    $consultaSQL = "SELECT * FROM trabajadores";
   }
 
   $sentencia = $conexion->prepare($consultaSQL);
   $sentencia->execute();
 
-  $alumnos = $sentencia->fetchAll();
+  $trabajadores = $sentencia->fetchAll();
 
 } catch(PDOException $error) {
   $error= $error->getMessage();
 }
 
-$titulo = isset($_POST['apellido']) ? 'Lista de alumnos (' . $_POST['apellido'] . ')' : 'Lista de alumnos';
+$titulo = isset($_POST['apellido']) ? 'Lista de trabajadores (' . $_POST['apellido'] . ')' : 'Lista de trabajadores';
 ?>
 
 <?php include "templates/header.php"; ?>
@@ -52,7 +52,7 @@ if ($error) {
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <a href="crear.php"  class="btn btn-primary mt-4">Crear alumno</a>
+      <a href="crear.php"  class="btn btn-primary mt-4">Crear trabajador</a>
       <hr>
       <form method="post" class="form-inline">
         <div class="form-group mr-3">
@@ -82,8 +82,8 @@ if ($error) {
         </thead>
         <tbody>
           <?php
-          if ($alumnos && $sentencia->rowCount() > 0) {
-            foreach ($alumnos as $fila) {
+          if ($trabajadores && $sentencia->rowCount() > 0) {
+            foreach ($trabajadores as $fila) {
               ?>
               <tr>
                 <td><?php echo escapar($fila["id"]); ?></td>

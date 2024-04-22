@@ -10,7 +10,7 @@ if (isset($_POST['submit']) && !hash_equals($_SESSION['csrf'], $_POST['csrf'])) 
 if (isset($_POST['submit'])) {
   $resultado = [
     'error' => false,
-    'mensaje' => 'El alumno ' . escapar($_POST['nombre']) . ' ha sido agregado con éxito'
+    'mensaje' => 'El trabajador ' . escapar($_POST['nombre']) . ' ha sido agregado con éxito'
   ];
 
   $config = include 'config.php';
@@ -19,18 +19,18 @@ if (isset($_POST['submit'])) {
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
-    $alumno = [
+    $trabajador = [
       "nombre"   => $_POST['nombre'],
       "apellido" => $_POST['apellido'],
       "email"    => $_POST['email'],
       "edad"     => $_POST['edad'],
     ];
 
-    $consultaSQL = "INSERT INTO alumnos (nombre, apellido, email, edad)";
-    $consultaSQL .= "values (:" . implode(", :", array_keys($alumno)) . ")";
+    $consultaSQL = "INSERT INTO trabajadores (nombre, apellido, email, edad)";
+    $consultaSQL .= "values (:" . implode(", :", array_keys($trabajador)) . ")";
 
     $sentencia = $conexion->prepare($consultaSQL);
-    $sentencia->execute($alumno);
+    $sentencia->execute($trabajador);
 
   } catch(PDOException $error) {
     $resultado['error'] = true;
@@ -60,7 +60,7 @@ if (isset($resultado)) {
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h2 class="mt-4">Crea un alumno</h2>
+      <h2 class="mt-4">Crea un trabajador</h2>
       <hr>
       <form method="post">
         <div class="form-group">
