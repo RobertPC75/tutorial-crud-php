@@ -1,6 +1,6 @@
-CREATE DATABASE tutorial_crud;
+CREATE DATABASE test;
 
-use tutorial_crud;
+use test;
 
 CREATE TABLE trabajadores (
   id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
